@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Oumayma_Lahmer_Mesure_Glycémie</string>
+    <string name="title">Mesure de niveau de glycemie</string>
+    <string name="buttonName">Consulter</string>
+</resources>
