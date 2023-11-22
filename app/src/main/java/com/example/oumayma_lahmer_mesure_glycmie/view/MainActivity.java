@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private Button btnConsulter;
     private TextView  tvResult;
 
-    //instance de la class Controller
-    private Controller ctrl = new Controller();
+    //l'instance unique et accessible du contrôleur
+    private Controller ctrl = Controller.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

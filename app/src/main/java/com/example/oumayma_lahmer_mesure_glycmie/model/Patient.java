@@ -1,13 +1,13 @@
 package com.example.oumayma_lahmer_mesure_glycmie.model;
 
-public class Patient {int age ;
+public class Patient {
+    int age ;
     boolean isFasting;
     float valeurMesuree;
     String result;
+
     // constructeur
     //controller -> model (notify)
-
-
     public Patient(int age, boolean isFasting, float valeurMesuree) {
         this.age = age;
         this.isFasting = isFasting;
