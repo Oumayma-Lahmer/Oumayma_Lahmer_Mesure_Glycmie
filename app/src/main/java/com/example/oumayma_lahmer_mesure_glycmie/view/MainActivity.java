@@ -1,7 +1,8 @@
 package com.example.oumayma_lahmer_mesure_glycmie.view;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,13 +17,14 @@ import com.example.oumayma_lahmer_mesure_glycmie.R;
 import com.example.oumayma_lahmer_mesure_glycmie.controller.Controller;
 
 public class MainActivity extends AppCompatActivity {
+    private final int REQUEST_CODE=1;
     private EditText etValeur ;
     private SeekBar sbAge ;
     private TextView tvAge;
     private RadioButton rbIsFasting;
     private RadioButton rbIsNotFasting;
     private Button btnConsulter;
-    private TextView  tvResult;
+  //  private TextView  tvResult;
 
     //l'instance unique et accessible du contrôleur
     private Controller ctrl = Controller.getInstance();
@@ -77,12 +79,26 @@ public class MainActivity extends AppCompatActivity {
                     ctrl.createPatient(age,isFasting,valeurMesuree);
 
                     // controller > view (update)
-                    tvResult.setText(ctrl.getResult());
+                    // tvResult.setText(ctrl.getResult());
+                    //cree une intent de context MainActivity a la class ConcultActivity
+                    Intent intent = new Intent(MainActivity.this,ConsultActivity.class);
+                    //l'intent ajoute de données auxiliere et par suite elle à transfere a l'activity qui va lancer
+                    intent.putExtra("reponse",ctrl.getResult());
+                    startActivityForResult(intent,REQUEST_CODE); // preparation implicite de la retour(retour attendu)
                 }
             }
         });
-
     }
+    //traitement de retour de startActivityForResult se passe dans la methode predifine onActivityResult
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //en cas de d'erreur
+        if(requestCode == REQUEST_CODE)
+            if(resultCode == RESULT_CANCELED)
+                Toast.makeText(this, "Erreur System", Toast.LENGTH_SHORT).show();
+    }
+
     private void init(){
         etValeur = (EditText) findViewById(R.id.etValeur);
         tvAge = (TextView) findViewById(R.id.tvAge);
@@ -90,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         rbIsFasting= (RadioButton) findViewById(R.id.rbisFasting);
         rbIsNotFasting= (RadioButton) findViewById(R.id.rbisNotFasting);
         btnConsulter=(Button) findViewById(R.id.btnConsulter);
-        tvResult =(TextView) findViewById(R.id.tvresult);
+       // tvResult =(TextView) findViewById(R.id.tvresult);
     }
 
 

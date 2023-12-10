@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.oumayma_lahmer_mesure_glycmie"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.oumayma_lahmer_mesure_glycmie"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

@@ -10,7 +10,7 @@ public final class Controller {
     //sangleton
     public final static Controller getInstance(){
         if(Controller.instance == null){
-            return instance = new Controller();
+           Controller.instance = new Controller();
         }
         return Controller.instance;
     }
